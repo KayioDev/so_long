@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:03 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/27 20:19:57 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:18:48 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ typedef struct s_game {
     t_img floor;
     t_img player;
     t_img exit;
+	t_img exit_open;
     t_img collectible;
 	t_player player_game;
 }   t_game;
@@ -64,6 +65,15 @@ int initialize_game(t_game *game);
 int	initialize_map(t_game *game, int fd);
 int exit_program(int keycode, t_game *game);
 
+void find_player(t_game *game);
+
 void print_map(char **map);
 void draw_map(t_game *game);
+void	exit_game(t_game *game);
+void	find_player(t_game *game);
+int	exit_program(int keycode, t_game *game);
+int	count_collectibles(t_game *game);
+int	exit_program(int keycode, t_game *game);
+void	move_player(t_game *game, int dy, int dx);
+int	validator_rectangular(t_game *game);
 #endif

@@ -1,0 +1,38 @@
+/* XPM */
+static char *player_pacman[] = {
+"32 32 2 1",
+"  c #0c1b0c",   /* fundo */
+"Y c #FFFF00",   /* amarelo Pac-Man */
+"................................",
+"................................",
+"................................",
+"..............YYYYYYYY..........",
+"..........YYYYYYYYYYYYYY........",
+"........YYYYYYYYYYYYYYYYYY......",
+".......YYYYYYYYYYYYYYYYYYYY.....",
+"......YYYYYYYYYYYYY  YYYYYYY....",
+".....YYYYYYYYYYYYYY  YYYYYYYY...",
+"....YYYYYYYYYYYYYYYYYYYYYYYYY...",
+"...YYYYYYYYYYYYYYYYYYYYYYYYYY...",
+"...YYYYYYYYYYYYYYYYYYYYYYY......",
+"..YYYYYYYYYYYYYYYYYY............",
+"..YYYYYYYYYYYYYYY...............",
+"..YYYYYYYYYYYYYY................",
+"..YYYYYYYYYYYYYY................",
+"..YYYYYYYYYYYYYY................",
+"..YYYYYYYYYYYYYY................",
+"..YYYYYYYYYYYYYYY...............",
+"..YYYYYYYYYYYYYYYYY.............",
+"...YYYYYYYYYYYYYYYYYYYYYYYY.....",
+"...YYYYYYYYYYYYYYYYYYYYYYYYY....",
+"....YYYYYYYYYYYYYYYYYYYYYYYY....",
+".....YYYYYYYYYYYYYYYYYYYYYYY....",
+"......YYYYYYYYYYYYYYYYYYYYYY....",
+".......YYYYYYYYYYYYYYYYYYYY.....",
+"........YYYYYYYYYYYYYYYYYY......",
+"..........YYYYYYYYYYYYYY........",
+".............YYYYYYYY...........",
+"................................",
+"................................",
+"................................"
+};

@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:13:53 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/27 18:24:25 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/28 10:41:50 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,15 @@ char	**list_to_array(t_list *lines)
 	array[i] = NULL;
 	return (array);
 }
+
 int	initialize_map(t_game *game, int fd)
 {
-	t_list	*lst_lines = NULL;
+	t_list	*lst_lines;
 	char	*line;
-	int		width = -1;
+	int		width;
 
+	lst_lines = NULL;
+	width = -1;
 	while ((line = get_next_line(fd)))
 	{
 		size_t len = ft_strlen(line);
@@ -64,12 +67,15 @@ int	initialize_map(t_game *game, int fd)
 	game->map.grid = list_to_array(lst_lines);
 	return (1);
 }
-void print_map(char **map)
+
+void	print_map(char **map)
 {
-    int i = 0;
-    while (map[i])
-    {
-        printf("%s\n", map[i]);
-        i++;
-    }
+	int	i;
+
+	i = 0;
+	while (map[i])
+	{
+		printf("%s\n", map[i]);
+		i++;
+	}
 }

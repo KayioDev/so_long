@@ -21,7 +21,11 @@ LIBFT       = $(LIBFT_DIR)/libft.a
 SRC_DIR     = srcs
 SRC_FILES   = Map/map.c \
               Map/initialize.c \
-              Render/render.c
+			  Map/validator.c\
+              Render/render.c\
+			  Render/load_sprites.c\
+			  Settings/Controls.c\
+			  Settings/Setting.c
 SRCS        = $(addprefix $(SRC_DIR)/, $(SRC_FILES)) main.c
 OBJS        = $(SRCS:.c=.o)
 
@@ -37,6 +41,7 @@ $(NAME): $(LIBFT) $(OBJS)
 
 clean:
 	rm -f $(OBJS)
+	rm -f $(NAME)
 	make -C $(LIBFT_DIR) clean
 
 fclean: clean

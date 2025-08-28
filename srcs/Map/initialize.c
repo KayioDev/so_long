@@ -6,28 +6,33 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:54 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/25 17:07:48 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/28 17:30:52 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
-// int	initialize(t_game *game, char *map_file)
-// {
-// 	game->mlx = mlx_init();
-// 	if (!game->mlx)
-// 		return (0);
-// 	if (!load_map(game, map_file))
-// 		return (0);
-//     game->win = mlx_new_window(game->mlx,
-//                                game->map.width * TILE_SIZE,
-//                                game->map.height * TILE_SIZE,
-//                                "so_long");
-// 	if (!game->win)
-// 		return (0);
-// 	if (!load_textures(game))
-// 		return (0);
-//     // mlx_key_hook(game->win, handle_key, game);
-//     // mlx_hook(game->win, 17, 0, handle_exit, game);
-//     return (1);
-// }
+int	initialize_game(t_game *game)
+{
+	game->mlx = mlx_init();
+	if (!game->mlx)
+		return (1);
+	game->win = mlx_new_window(game->mlx,
+			game->map.width * TILE_SIZE, game->map.height * TILE_SIZE, "so_long");
+	if (!game->win)
+		return (1);
+	game->collected = 0;
+	game->total_collectibles = count_collectibles(game);
+	find_player(game);
+	load_sprites(game);
+	if (!validator_rectangular(game))
+	{
+		write(2, "Error: map is not rectangular\n", 30);
+		return (1);
+	}
+	draw_map(game);
+	mlx_hook(game->win, 2, 1L << 0, exit_program, game);
+	mlx_loop(game->mlx);
+	return (0);
+}
+
