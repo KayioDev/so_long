@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:13:53 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/25 17:32:05 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/27 18:24:25 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,38 +23,47 @@ char	**list_to_array(t_list *lines)
 		return (NULL);
 	while (lines)
 	{
-		array[i++] = lines->content;
+		array[i] = ft_strdup(lines->content);
+		if (!array[i])
+		{
+			while (i > 0)
+				free(array[--i]);
+			free(array);
+			return (NULL);
+		}
+		i++;
 		lines = lines->next;
 	}
 	array[i] = NULL;
 	return (array);
-
 }
-
 int	initialize_map(t_game *game, int fd)
 {
+	t_list	*lst_lines = NULL;
 	char	*line;
-	t_list	*lines = NULL;
 	int		width = -1;
 
 	while ((line = get_next_line(fd)))
 	{
-		if (line[ft_strlen(line)] -1 == '\n')
-			line[ft_strlen(line) - 1] = '\0';
+		size_t len = ft_strlen(line);
+		if (len > 0 && line[len - 1] == '\n')
+			line[len - 1] = '\0';
 		if (width == -1)
 			width = ft_strlen(line);
-		else if (ft_strlen(line) != (int)width)
+		else if ((int)ft_strlen(line) != width)
+		{
+			ft_lstclear(&lst_lines, free);
 			return (0);
-		ft_lstadd_back(&lines, ft_lstnew(line));
+		}
+		ft_lstadd_back(&lst_lines, ft_lstnew(line));
 	}
-	if (!lines)
+	if (!lst_lines)
 		return (0);
-	game->map.height = ft_lstsize(lines);
+	game->map.height = ft_lstsize(lst_lines);
 	game->map.width = width;
-	game->map.grid = list_to_array(lines);
+	game->map.grid = list_to_array(lst_lines);
 	return (1);
 }
-
 void print_map(char **map)
 {
     int i = 0;
