@@ -6,16 +6,32 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:59:49 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/28 12:04:51 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:42:46 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
 
+void	free_map(char **grid)
+{
+	int	i;
+
+	i = 0;
+	if (!grid)
+		return ;
+	while (grid[i])
+	{
+		free(grid[i]);
+		i++;
+	}
+	free(grid);
+}
+
 void	exit_game(t_game *game)
 {
 	if (game->win)
 		mlx_destroy_window(game->mlx, game->win);
+	free_map(game->map.grid);
 	exit(0);
 }
 void	find_player(t_game *game)

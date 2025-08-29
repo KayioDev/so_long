@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:33:54 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/28 17:30:52 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:49:04 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	initialize_game(t_game *game)
 {
+	game->moves = 0;
 	game->mlx = mlx_init();
 	if (!game->mlx)
 		return (1);
@@ -31,7 +32,7 @@ int	initialize_game(t_game *game)
 		return (1);
 	}
 	draw_map(game);
-	mlx_hook(game->win, 2, 1L << 0, exit_program, game);
+	mlx_hook(game->win, 2, 1L << 0, keys_controls, game);
 	mlx_loop(game->mlx);
 	return (0);
 }

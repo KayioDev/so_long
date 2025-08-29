@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:13:53 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/28 10:41:50 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/28 20:56:10 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	initialize_map(t_game *game, int fd)
 			width = ft_strlen(line);
 		else if ((int)ft_strlen(line) != width)
 		{
+			free(line);
 			ft_lstclear(&lst_lines, free);
 			return (0);
 		}
@@ -65,6 +66,7 @@ int	initialize_map(t_game *game, int fd)
 	game->map.height = ft_lstsize(lst_lines);
 	game->map.width = width;
 	game->map.grid = list_to_array(lst_lines);
+	ft_lstclear(&lst_lines, free);
 	return (1);
 }
 

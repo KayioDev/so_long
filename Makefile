@@ -51,7 +51,7 @@ fclean: clean
 re: fclean all
 
 run: $(NAME)
-	./$(NAME) map.ber
+	./$(NAME) /Maps/map.ber
 
 debug: CFLAGS = -Wall -Wextra -g
 debug: re

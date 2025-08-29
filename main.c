@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 15:44:14 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/28 10:15:16 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/08/28 18:41:49 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 #include "mlx.h"
 #include <fcntl.h>
 
-int main(void)
+int main(int argc, char **argv)
 {
     t_game game;
 
 	int fd;
+	(void) argc;
 
-
-    fd = open("map.ber", O_RDONLY);
+    fd = open(argv[1], O_RDONLY);
     if (fd < 0)
     {
 		perror("Error opening map");
