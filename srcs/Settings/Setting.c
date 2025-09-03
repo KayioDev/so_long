@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/28 11:59:49 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/28 20:42:46 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/09/01 21:39:45 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	exit_game(t_game *game)
 	free_map(game->map.grid);
 	exit(0);
 }
+
 void	find_player(t_game *game)
 {
 	int	y;
@@ -56,6 +57,7 @@ void	find_player(t_game *game)
 		y++;
 	}
 }
+
 int	count_collectibles(t_game *game)
 {
 	int	y;

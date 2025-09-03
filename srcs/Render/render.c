@@ -6,11 +6,42 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/25 16:38:06 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/28 20:42:21 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/09/02 17:27:55 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../so_long.h"
+
+#include "../../so_long.h"
+
+void	put_img(t_game *game, t_imge img, int x, int y)
+{
+	mlx_put_image_to_window(game->mlx, game->win,
+		img.img, x * img.width, y * img.height);
+}
+
+static void	draw_exit(t_game *game, int x, int y)
+{
+	if (game->collected == game->total_collectibles)
+		put_img(game, game->exit_open, x, y);
+	else
+		put_img(game, game->exit, x, y);
+}
+
+static void	draw_tile(t_game *game, int x, int y)
+{
+	char	tile;
+
+	tile = game->map.grid[y][x];
+	if (tile == '1')
+		put_img(game, game->wall, x, y);
+	else if (tile == 'P')
+		put_img(game, game->player, x, y);
+	else if (tile == 'E')
+		draw_exit(game, x, y);
+	else if (tile == 'C')
+		put_img(game, game->collectible, x, y);
+}
 
 void	draw_map(t_game *game)
 {
@@ -23,26 +54,8 @@ void	draw_map(t_game *game)
 		x = 0;
 		while (x < game->map.width)
 		{
-			mlx_put_image_to_window(game->mlx, game->win,
-				game->floor.img, x * game->floor.width, y * game->floor.height);
-			if (game->map.grid[y][x] == '1')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->wall.img, x * game->wall.width, y * game->wall.height);
-			else if (game->map.grid[y][x] == 'P')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->player.img, x * game->player.width, y * game->player.height);
-			else if (game->map.grid[y][x] == 'E')
-			{
-    		if (game->collected == game->total_collectibles)
-        		mlx_put_image_to_window(game->mlx, game->win,
-           			game->exit_open.img, x * game->exit_open.width, y * game->exit_open.height);
-    		else
-        		mlx_put_image_to_window(game->mlx, game->win,
-            		game->exit.img, x * game->exit.width, y * game->exit.height);
-			}
-			else if (game->map.grid[y][x] == 'C')
-				mlx_put_image_to_window(game->mlx, game->win,
-					game->collectible.img, x * game->collectible.width, y * game->collectible.height);
+			put_img(game, game->floor, x, y);
+			draw_tile(game, x, y);
 			x++;
 		}
 		y++;

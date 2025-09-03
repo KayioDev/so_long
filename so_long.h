@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 19:34:03 by klima-do          #+#    #+#             */
-/*   Updated: 2025/08/28 20:49:04 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/09/03 20:20:56 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include "Libft/libft.h"
 # define TILE_SIZE 64
 # include <stdio.h>
+#include "minilibx-linux/mlx_int.h"
 
 typedef struct s_player {
     int x;
@@ -37,12 +38,12 @@ typedef struct s_map
 	int     player_y;
 	int     exit_count;
 }   t_map;
-typedef struct s_img
+typedef struct s_imge
 {
     void *img;
     int   width;
     int   height;
-}   t_img;
+}   t_imge;
 
 typedef struct s_game {
     void *mlx;
@@ -51,13 +52,18 @@ typedef struct s_game {
     int total_collectibles;
 	int     moves;
     t_map map;
-    t_img wall;
-    t_img floor;
-    t_img player;
-    t_img exit;
-	t_img exit_open;
-    t_img collectible;
+    t_imge wall;
+    t_imge floor;
+    t_imge player;
+    t_imge exit;
+	t_imge exit_open;
+    t_imge collectible;
 	t_player player_game;
+	int is_moving;
+	int key;
+	int frames;
+	int movement_accum;
+	unsigned int keys_pressed[256];
 }   t_game;
 
 
@@ -78,4 +84,5 @@ int	keys_controls(int keycode, t_game *game);
 void	move_player(t_game *game, int dy, int dx);
 int	validator_rectangular(t_game *game);
 void	printf_moves(t_game *game);
+void	type_move(t_game *game, int new_y, int new_x);
 #endif
