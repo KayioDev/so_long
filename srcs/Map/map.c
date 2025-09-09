@@ -6,7 +6,7 @@
 /*   By: klima-do <klima-do@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/24 22:13:53 by klima-do          #+#    #+#             */
-/*   Updated: 2025/09/02 17:13:37 by klima-do         ###   ########.fr       */
+/*   Updated: 2025/09/03 21:50:47 by klima-do         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ void	print_map(char **map)
 	i = 0;
 	while (map[i])
 	{
-		printf("%s\n", map[i]);
+		ft_printf("%s\n", map[i]);
 		i++;
 	}
 }
